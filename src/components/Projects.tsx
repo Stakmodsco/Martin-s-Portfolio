@@ -104,11 +104,6 @@ export const Projects = () => {
                   variant={activeFilter === filter.id ? "default" : "outline"}
                   size="sm"
                   onClick={() => setActiveFilter(filter.id)}
-                  className={
-                    activeFilter === filter.id
-                      ? "bg-gradient-primary text-white"
-                      : ""
-                  }
                 >
                   {filter.label}
                 </Button>
@@ -120,7 +115,7 @@ export const Projects = () => {
             {filteredProjects.map((project, index) => (
               <div
                 key={project.title}
-                className="glass rounded-2xl overflow-hidden group hover:scale-105 transition-all duration-300 animate-scale-in"
+                className="glass-card rounded-2xl overflow-hidden group hover:scale-105 hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all duration-300 animate-scale-in animate-tilt"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="relative h-48 overflow-hidden">
