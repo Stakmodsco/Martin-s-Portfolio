@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail, Code2, Cpu, Database, Cloud, Blocks, Terminal } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -46,18 +46,7 @@ export const Hero = () => {
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        const gradient = ctx.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          particle.radius * 2
-        );
-        gradient.addColorStop(0, "rgba(255, 87, 34, 0.8)");
-        gradient.addColorStop(0.5, "rgba(0, 188, 212, 0.6)");
-        gradient.addColorStop(1, "rgba(255, 87, 34, 0)");
-        ctx.fillStyle = gradient;
+        ctx.fillStyle = "rgba(99, 102, 241, 0.6)";
         ctx.fill();
       });
 
@@ -72,11 +61,8 @@ export const Hero = () => {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-            gradient.addColorStop(0, `rgba(255, 87, 34, ${0.3 * (1 - distance / 150)})`);
-            gradient.addColorStop(1, `rgba(0, 188, 212, ${0.2 * (1 - distance / 150)})`);
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.2 * (1 - distance / 150)})`;
+            ctx.lineWidth = 1;
             ctx.stroke();
           }
         });
@@ -112,16 +98,6 @@ export const Hero = () => {
 
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
 
-      {/* Floating 3D Tech Icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <Code2 className="absolute top-20 left-[10%] w-12 h-12 text-primary/30 animate-float" style={{ animationDelay: "0s" }} />
-        <Cpu className="absolute top-40 right-[15%] w-16 h-16 text-secondary/40 animate-float" style={{ animationDelay: "1s" }} />
-        <Database className="absolute bottom-40 left-[20%] w-14 h-14 text-primary/25 animate-float" style={{ animationDelay: "2s" }} />
-        <Cloud className="absolute top-60 left-[70%] w-20 h-20 text-secondary/30 animate-float" style={{ animationDelay: "3s" }} />
-        <Blocks className="absolute bottom-60 right-[25%] w-12 h-12 text-primary/35 animate-float" style={{ animationDelay: "1.5s" }} />
-        <Terminal className="absolute top-[30%] left-[15%] w-10 h-10 text-secondary/25 animate-float" style={{ animationDelay: "2.5s" }} />
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto animate-fade-in">
           <div className="mb-6 inline-block">
@@ -147,6 +123,7 @@ export const Hero = () => {
           <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
             <Button
               size="lg"
+              className="bg-gradient-primary text-white glow-primary hover:opacity-90 transition-opacity"
               onClick={() => scrollToSection("projects")}
             >
               View Projects
@@ -154,6 +131,7 @@ export const Hero = () => {
             <Button
               size="lg"
               variant="outline"
+              className="border-primary text-primary hover:bg-primary/10"
               onClick={() => scrollToSection("contact")}
             >
               Get in Touch

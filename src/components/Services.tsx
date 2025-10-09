@@ -70,11 +70,11 @@ export const Services = () => {
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className="glass-card rounded-2xl p-8 hover:shadow-[0_0_40px_rgba(255,87,34,0.3)] transition-all duration-300 group animate-scale-in animate-tilt"
+                className="glass rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 group animate-scale-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-gradient-primary group-hover:scale-110 transition-transform glow-primary">
+                  <div className="p-3 rounded-xl bg-gradient-primary group-hover:scale-110 transition-transform">
                     <service.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
