@@ -25,8 +25,13 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
+      {/* Animated background glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse pointer-events-none" style={{ animationDelay: "1s" }} />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -40,7 +45,7 @@ export const Contact = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="animate-scale-in">
-              <div className="glass rounded-2xl p-8 mb-6">
+              <div className="glass-card rounded-2xl p-8 mb-6 hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all">
                 <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
 
                 <div className="space-y-4">
@@ -48,7 +53,7 @@ export const Contact = () => {
                     href="mailto:contact@example.com"
                     className="flex items-center gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors group"
                   >
-                    <div className="p-3 rounded-lg bg-gradient-primary group-hover:scale-110 transition-transform">
+                    <div className="p-3 rounded-lg bg-gradient-primary group-hover:scale-110 transition-transform glow-primary">
                       <Mail className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -65,7 +70,7 @@ export const Contact = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors group"
                   >
-                    <div className="p-3 rounded-lg bg-gradient-primary group-hover:scale-110 transition-transform">
+                    <div className="p-3 rounded-lg bg-gradient-primary group-hover:scale-110 transition-transform glow-primary">
                       <Github className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -82,7 +87,7 @@ export const Contact = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors group"
                   >
-                    <div className="p-3 rounded-lg bg-gradient-primary group-hover:scale-110 transition-transform">
+                    <div className="p-3 rounded-lg bg-gradient-primary group-hover:scale-110 transition-transform glow-primary">
                       <Linkedin className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -99,7 +104,7 @@ export const Contact = () => {
             <div className="animate-scale-in" style={{ animationDelay: "0.1s" }}>
               <form
                 onSubmit={handleSubmit}
-                className="glass rounded-2xl p-8 space-y-6"
+                className="glass-card rounded-2xl p-8 space-y-6 shadow-[0_0_40px_rgba(255,87,34,0.2)] hover:shadow-[0_0_60px_rgba(255,87,34,0.4)] transition-all"
               >
                 <div>
                   <label
@@ -160,9 +165,9 @@ export const Contact = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-gradient-primary text-white glow-primary hover:opacity-90"
+                  className="w-full group"
                 >
-                  <Send className="mr-2 h-4 w-4" />
+                  <Send className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   Send Message
                 </Button>
               </form>
