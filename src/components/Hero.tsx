@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail, Code2, Cpu, Database, Cloud, Blocks, Terminal } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import laptop3D from "@/assets/3d-laptop.png";
+import aiBrain3D from "@/assets/3d-ai-brain.png";
+import server3D from "@/assets/3d-server.png";
+import codeEditor3D from "@/assets/3d-code-editor.png";
+import database3D from "@/assets/3d-database.png";
+import cloud3D from "@/assets/3d-cloud.png";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -112,14 +118,14 @@ export const Hero = () => {
 
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
 
-      {/* Floating 3D Tech Icons */}
+      {/* Floating 3D Tech Images */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <Code2 className="absolute top-20 left-[10%] w-12 h-12 text-primary/30 animate-float" style={{ animationDelay: "0s" }} />
-        <Cpu className="absolute top-40 right-[15%] w-16 h-16 text-secondary/40 animate-float" style={{ animationDelay: "1s" }} />
-        <Database className="absolute bottom-40 left-[20%] w-14 h-14 text-primary/25 animate-float" style={{ animationDelay: "2s" }} />
-        <Cloud className="absolute top-60 left-[70%] w-20 h-20 text-secondary/30 animate-float" style={{ animationDelay: "3s" }} />
-        <Blocks className="absolute bottom-60 right-[25%] w-12 h-12 text-primary/35 animate-float" style={{ animationDelay: "1.5s" }} />
-        <Terminal className="absolute top-[30%] left-[15%] w-10 h-10 text-secondary/25 animate-float" style={{ animationDelay: "2.5s" }} />
+        <img src={laptop3D} alt="3D Laptop" className="absolute top-20 left-[10%] w-32 h-32 object-contain opacity-80 animate-float" style={{ animationDelay: "0s" }} />
+        <img src={aiBrain3D} alt="AI Brain" className="absolute top-40 right-[15%] w-40 h-40 object-contain opacity-70 animate-float" style={{ animationDelay: "1s" }} />
+        <img src={database3D} alt="3D Database" className="absolute bottom-40 left-[20%] w-36 h-36 object-contain opacity-75 animate-float" style={{ animationDelay: "2s" }} />
+        <img src={cloud3D} alt="3D Cloud" className="absolute top-60 left-[70%] w-44 h-44 object-contain opacity-65 animate-float" style={{ animationDelay: "3s" }} />
+        <img src={server3D} alt="3D Server" className="absolute bottom-60 right-[25%] w-32 h-32 object-contain opacity-80 animate-float" style={{ animationDelay: "1.5s" }} />
+        <img src={codeEditor3D} alt="3D Code Editor" className="absolute top-[30%] left-[15%] w-28 h-28 object-contain opacity-70 animate-float" style={{ animationDelay: "2.5s" }} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
