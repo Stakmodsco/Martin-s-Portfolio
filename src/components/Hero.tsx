@@ -4,101 +4,9 @@ import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import robotImg from "@/assets/robot.png";
 
 export const Hero = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const robotCanvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-    }> = [];
-
-    for (let i = 0; i < 80; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1,
-      });
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw particles
-      particles.forEach((particle) => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        const gradient = ctx.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          particle.radius * 2
-        );
-        gradient.addColorStop(0, "rgba(255, 87, 34, 0.8)");
-        gradient.addColorStop(0.5, "rgba(0, 188, 212, 0.6)");
-        gradient.addColorStop(1, "rgba(255, 87, 34, 0)");
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      });
-
-      // Draw connections
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach((p2) => {
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-            gradient.addColorStop(0, `rgba(255, 87, 34, ${0.3 * (1 - distance / 150)})`);
-            gradient.addColorStop(1, `rgba(0, 188, 212, ${0.2 * (1 - distance / 150)})`);
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-          }
-        });
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Interactive Robot Animation
+  // Centered Robot Animation
   useEffect(() => {
     const robotCanvas = robotCanvasRef.current;
     if (!robotCanvas) return;
@@ -117,20 +25,12 @@ export const Hero = () => {
     window.addEventListener("resize", resize);
 
     let t = 0;
-    let pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 + 50 };
-    let targetPos = { ...pos };
     let winkBoost = 0;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      targetPos.x = e.clientX;
-      targetPos.y = e.clientY;
-    };
 
     const handleClick = () => {
       winkBoost = 1;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("click", handleClick);
 
     const drawRobot = (cx: number, cy: number, scale: number, blink: number, armAngle: number) => {
@@ -141,40 +41,53 @@ export const Hero = () => {
       ctx.translate(cx, cy);
       ctx.drawImage(robot, -imgW/2, -imgH/2, imgW, imgH);
 
-      // Left eye
-      ctx.fillStyle = "cyan";
+      // Left eye - orange glow
+      ctx.fillStyle = "rgba(255, 87, 34, 0.9)";
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = "rgba(255, 87, 34, 0.8)";
       ctx.beginPath();
       ctx.arc(-imgW*0.12, -imgH*0.18, imgW*0.04, 0, Math.PI*2);
       ctx.fill();
+      ctx.shadowBlur = 0;
 
-      // Right eye (wink)
+      // Right eye (wink) - cyan glow
       const rx = imgW*0.12, ry = -imgH*0.18;
       ctx.beginPath();
       if (blink < 0.5) {
-        ctx.strokeStyle = "cyan";
+        ctx.strokeStyle = "rgba(0, 188, 212, 0.9)";
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "rgba(0, 188, 212, 0.8)";
         ctx.lineWidth = 3;
         ctx.moveTo(rx - imgW*0.04, ry);
         ctx.quadraticCurveTo(rx, ry+imgH*0.02, rx+imgW*0.04, ry);
         ctx.stroke();
       } else {
-        ctx.fillStyle = "cyan";
+        ctx.fillStyle = "rgba(0, 188, 212, 0.9)";
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "rgba(0, 188, 212, 0.8)";
         ctx.arc(rx, ry, imgW*0.04*blink, 0, Math.PI*2);
         ctx.fill();
       }
+      ctx.shadowBlur = 0;
 
-      // Mouth
+      // Mouth - gradient orange to cyan
       ctx.beginPath();
-      ctx.strokeStyle = "cyan";
+      const gradient = ctx.createLinearGradient(-imgW*0.08, -imgH*0.08, imgW*0.08, -imgH*0.08);
+      gradient.addColorStop(0, "rgba(255, 87, 34, 0.8)");
+      gradient.addColorStop(1, "rgba(0, 188, 212, 0.8)");
+      ctx.strokeStyle = gradient;
       ctx.lineWidth = 2;
       ctx.moveTo(-imgW*0.08, -imgH*0.08);
       ctx.quadraticCurveTo(0, -imgH*0.05, imgW*0.08, -imgH*0.08);
       ctx.stroke();
 
-      // Arm peace sign
+      // Arm peace sign - cyan with glow
       ctx.save();
       ctx.translate(imgW*0.25, imgH*0.05);
       ctx.rotate(armAngle);
-      ctx.strokeStyle = "cyan";
+      ctx.strokeStyle = "rgba(0, 188, 212, 0.9)";
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = "rgba(0, 188, 212, 0.6)";
       ctx.lineWidth = 4;
       ctx.beginPath();
       ctx.moveTo(0,0);
@@ -186,6 +99,7 @@ export const Hero = () => {
       ctx.moveTo(0, imgH*0.12);
       ctx.lineTo(-imgW*0.03, imgH*0.18);
       ctx.stroke();
+      ctx.shadowBlur = 0;
       ctx.restore();
 
       ctx.restore();
@@ -195,8 +109,9 @@ export const Hero = () => {
       ctx.clearRect(0, 0, robotCanvas.width, robotCanvas.height);
       t += 0.03;
 
-      pos.x += (targetPos.x - pos.x) * 0.05;
-      pos.y += (targetPos.y - pos.y) * 0.05;
+      // Center position with slight floating motion
+      const cx = robotCanvas.width / 2;
+      const cy = robotCanvas.height / 2 + Math.sin(t * 0.5) * 20;
 
       let blink = 0.5 + 0.5 * Math.sin(t*2);
       if (winkBoost > 0) {
@@ -206,7 +121,7 @@ export const Hero = () => {
 
       const armAngle = -0.6 + 0.2 * Math.sin(t*1.5);
 
-      drawRobot(pos.x, pos.y, 0.4, blink, armAngle);
+      drawRobot(cx, cy, 0.8, blink, armAngle);
       requestAnimationFrame(animate);
     };
 
@@ -214,7 +129,6 @@ export const Hero = () => {
 
     return () => {
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
     };
   }, []);
@@ -229,17 +143,12 @@ export const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <canvas
-        ref={canvasRef}
-        className="absolute inset-0 pointer-events-none opacity-40"
-      />
-
-      <canvas
         ref={robotCanvasRef}
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-25"
         style={{ pointerEvents: 'none' }}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
 
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
