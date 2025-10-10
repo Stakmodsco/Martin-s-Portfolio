@@ -6,7 +6,6 @@ import robotImg from "@/assets/robot.png";
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const robotCanvasRef = useRef<HTMLCanvasElement>(null);
-  const [robotLoaded, setRobotLoaded] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -102,7 +101,7 @@ export const Hero = () => {
   // Interactive Robot Animation
   useEffect(() => {
     const robotCanvas = robotCanvasRef.current;
-    if (!robotCanvas || !robotLoaded) return;
+    if (!robotCanvas) return;
 
     const ctx = robotCanvas.getContext("2d");
     if (!ctx) return;
@@ -218,7 +217,7 @@ export const Hero = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
     };
-  }, [robotLoaded]);
+  }, []);
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -236,8 +235,8 @@ export const Hero = () => {
 
       <canvas
         ref={robotCanvasRef}
-        className="absolute inset-0 pointer-events-none opacity-30"
-        onLoad={() => setRobotLoaded(true)}
+        className="absolute inset-0 opacity-60"
+        style={{ pointerEvents: 'none' }}
       />
 
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
