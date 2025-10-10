@@ -1,12 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
-import laptop3D from "@/assets/3d-laptop.png";
-import aiBrain3D from "@/assets/3d-ai-brain.png";
-import server3D from "@/assets/3d-server.png";
-import codeEditor3D from "@/assets/3d-code-editor.png";
-import database3D from "@/assets/3d-database.png";
-import cloud3D from "@/assets/3d-cloud.png";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -118,15 +112,6 @@ export const Hero = () => {
 
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
 
-      {/* Floating 3D Tech Images */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <img src={laptop3D} alt="3D Laptop" className="absolute top-20 left-[10%] w-32 h-32 object-contain opacity-80 animate-float" style={{ animationDelay: "0s" }} />
-        <img src={aiBrain3D} alt="AI Brain" className="absolute top-40 right-[15%] w-40 h-40 object-contain opacity-70 animate-float" style={{ animationDelay: "1s" }} />
-        <img src={database3D} alt="3D Database" className="absolute bottom-40 left-[20%] w-36 h-36 object-contain opacity-75 animate-float" style={{ animationDelay: "2s" }} />
-        <img src={cloud3D} alt="3D Cloud" className="absolute top-60 left-[70%] w-44 h-44 object-contain opacity-65 animate-float" style={{ animationDelay: "3s" }} />
-        <img src={server3D} alt="3D Server" className="absolute bottom-60 right-[25%] w-32 h-32 object-contain opacity-80 animate-float" style={{ animationDelay: "1.5s" }} />
-        <img src={codeEditor3D} alt="3D Code Editor" className="absolute top-[30%] left-[15%] w-28 h-28 object-contain opacity-70 animate-float" style={{ animationDelay: "2.5s" }} />
-      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto animate-fade-in">
