@@ -48,7 +48,7 @@ export const Navigation = () => {
             onClick={() => scrollToSection("hero")}
             className="text-xl md:text-2xl font-bold text-gradient hover:opacity-80 transition-opacity"
           >
-            Portfolio
+            Stakmods
           </button>
 
           {/* Desktop Navigation */}

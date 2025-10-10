@@ -1,9 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import robotImg from "@/assets/robot.png";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const robotCanvasRef = useRef<HTMLCanvasElement>(null);
+  const [robotLoaded, setRobotLoaded] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -96,6 +99,127 @@ export const Hero = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Interactive Robot Animation
+  useEffect(() => {
+    const robotCanvas = robotCanvasRef.current;
+    if (!robotCanvas || !robotLoaded) return;
+
+    const ctx = robotCanvas.getContext("2d");
+    if (!ctx) return;
+
+    const robot = new Image();
+    robot.src = robotImg;
+
+    const resize = () => {
+      robotCanvas.width = window.innerWidth;
+      robotCanvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    let t = 0;
+    let pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 + 50 };
+    let targetPos = { ...pos };
+    let winkBoost = 0;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetPos.x = e.clientX;
+      targetPos.y = e.clientY;
+    };
+
+    const handleClick = () => {
+      winkBoost = 1;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("click", handleClick);
+
+    const drawRobot = (cx: number, cy: number, scale: number, blink: number, armAngle: number) => {
+      const imgW = robot.width * scale;
+      const imgH = robot.height * scale;
+
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.drawImage(robot, -imgW/2, -imgH/2, imgW, imgH);
+
+      // Left eye
+      ctx.fillStyle = "cyan";
+      ctx.beginPath();
+      ctx.arc(-imgW*0.12, -imgH*0.18, imgW*0.04, 0, Math.PI*2);
+      ctx.fill();
+
+      // Right eye (wink)
+      const rx = imgW*0.12, ry = -imgH*0.18;
+      ctx.beginPath();
+      if (blink < 0.5) {
+        ctx.strokeStyle = "cyan";
+        ctx.lineWidth = 3;
+        ctx.moveTo(rx - imgW*0.04, ry);
+        ctx.quadraticCurveTo(rx, ry+imgH*0.02, rx+imgW*0.04, ry);
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = "cyan";
+        ctx.arc(rx, ry, imgW*0.04*blink, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      // Mouth
+      ctx.beginPath();
+      ctx.strokeStyle = "cyan";
+      ctx.lineWidth = 2;
+      ctx.moveTo(-imgW*0.08, -imgH*0.08);
+      ctx.quadraticCurveTo(0, -imgH*0.05, imgW*0.08, -imgH*0.08);
+      ctx.stroke();
+
+      // Arm peace sign
+      ctx.save();
+      ctx.translate(imgW*0.25, imgH*0.05);
+      ctx.rotate(armAngle);
+      ctx.strokeStyle = "cyan";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.lineTo(0, imgH*0.12);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0, imgH*0.12);
+      ctx.lineTo(0, imgH*0.20);
+      ctx.moveTo(0, imgH*0.12);
+      ctx.lineTo(-imgW*0.03, imgH*0.18);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.restore();
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, robotCanvas.width, robotCanvas.height);
+      t += 0.03;
+
+      pos.x += (targetPos.x - pos.x) * 0.05;
+      pos.y += (targetPos.y - pos.y) * 0.05;
+
+      let blink = 0.5 + 0.5 * Math.sin(t*2);
+      if (winkBoost > 0) {
+        blink = 0.2;
+        winkBoost -= 0.05;
+      }
+
+      const armAngle = -0.6 + 0.2 * Math.sin(t*1.5);
+
+      drawRobot(pos.x, pos.y, 0.4, blink, armAngle);
+      requestAnimationFrame(animate);
+    };
+
+    robot.onload = () => animate();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("click", handleClick);
+    };
+  }, [robotLoaded]);
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -108,6 +232,12 @@ export const Hero = () => {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 pointer-events-none opacity-40"
+      />
+
+      <canvas
+        ref={robotCanvasRef}
+        className="absolute inset-0 pointer-events-none opacity-30"
+        onLoad={() => setRobotLoaded(true)}
       />
 
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />

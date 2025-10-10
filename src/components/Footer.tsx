@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} Full-Stack Engineer. All rights reserved.
+              © {currentYear} Stakmods. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground mt-1">
               Built with React, TailwindCSS, and passion.
