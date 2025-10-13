@@ -33,7 +33,7 @@ export const Contact = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
+          <div className="text-center mb-16 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               Let's <span className="text-gradient">Connect</span>
             </h2>
@@ -44,7 +44,7 @@ export const Contact = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="animate-scale-in">
+            <div className="animate-flow-in" style={{ animationDelay: "0.2s" }}>
               <div className="glass-card rounded-2xl p-8 mb-6 hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all">
                 <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
 
@@ -101,7 +101,7 @@ export const Contact = () => {
               </div>
             </div>
 
-            <div className="animate-scale-in" style={{ animationDelay: "0.1s" }}>
+            <div className="animate-flow-in" style={{ animationDelay: "0.4s" }}>
               <form
                 onSubmit={handleSubmit}
                 className="glass-card rounded-2xl p-8 space-y-6 shadow-[0_0_40px_rgba(255,87,34,0.2)] hover:shadow-[0_0_60px_rgba(255,87,34,0.4)] transition-all"

@@ -53,10 +53,12 @@ export const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 md:py-32 relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-20 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
+          <div className="text-center mb-16 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               <span className="text-gradient">Services</span> I Offer
             </h2>
@@ -70,8 +72,8 @@ export const Services = () => {
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className="glass-card rounded-2xl p-8 hover:shadow-[0_0_40px_rgba(255,87,34,0.3)] transition-all duration-300 group animate-scale-in animate-tilt"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="glass-card rounded-2xl p-8 hover:shadow-[0_0_40px_rgba(255,87,34,0.3)] transition-all duration-300 group animate-flow-in animate-tilt"
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div className="flex items-start gap-4 mb-6">
                   <div className="p-3 rounded-xl bg-gradient-primary group-hover:scale-110 transition-transform glow-primary">

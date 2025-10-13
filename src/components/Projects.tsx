@@ -88,7 +88,7 @@ export const Projects = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 animate-fade-in">
+          <div className="text-center mb-12 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               Featured <span className="text-gradient">Projects</span>
             </h2>
@@ -115,8 +115,8 @@ export const Projects = () => {
             {filteredProjects.map((project, index) => (
               <div
                 key={project.title}
-                className="glass-card rounded-2xl overflow-hidden group hover:scale-105 hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all duration-300 animate-scale-in animate-tilt"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="glass-card rounded-2xl overflow-hidden group hover:scale-105 hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all duration-300 animate-flow-in animate-tilt"
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div className="relative h-48 overflow-hidden">
                   <img

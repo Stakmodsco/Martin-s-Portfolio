@@ -34,7 +34,7 @@ export const About = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
+          <div className="text-center mb-16 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               About <span className="text-gradient">Me</span>
             </h2>
@@ -45,7 +45,7 @@ export const About = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <div className="glass rounded-2xl p-8 animate-scale-in">
+            <div className="glass-card rounded-2xl p-8 animate-flow-in">
               <h3 className="text-2xl font-bold mb-4">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 With years of experience in full-stack development and a deep
@@ -60,7 +60,7 @@ export const About = () => {
               </p>
             </div>
 
-            <div className="glass rounded-2xl p-8 animate-scale-in" style={{ animationDelay: "0.1s" }}>
+            <div className="glass-card rounded-2xl p-8 animate-flow-in" style={{ animationDelay: "0.2s" }}>
               <h3 className="text-2xl font-bold mb-4">What I Do</h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 I specialize in architecting and developing full-stack
@@ -79,8 +79,8 @@ export const About = () => {
             {skills.map((skill, index) => (
               <div
                 key={skill.title}
-                className="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="glass-card rounded-xl p-6 hover:scale-105 transition-transform duration-300 animate-flow-in"
+                style={{ animationDelay: `${(index + 2) * 0.15}s` }}
               >
                 <skill.icon className={`h-12 w-12 mb-4 ${skill.color}`} />
                 <h4 className="font-bold mb-2">{skill.title}</h4>
