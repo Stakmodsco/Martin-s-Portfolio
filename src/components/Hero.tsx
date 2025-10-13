@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { FloatingParticles } from "./FloatingParticles";
 
 export const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -12,6 +13,7 @@ export const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
+      <FloatingParticles />
 
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
