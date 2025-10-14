@@ -1,4 +1,45 @@
 import { Server, Cpu, CloudCog, Sparkles } from "lucide-react";
+import { useTiltEffect } from "@/hooks/useTiltEffect";
+
+const ServiceCard = ({ service, index }: { service: any; index: number }) => {
+  const tiltRef = useTiltEffect<HTMLDivElement>();
+
+  return (
+    <div
+      ref={tiltRef}
+      className="glass-card rounded-2xl p-8 hover:shadow-[0_0_40px_rgba(255,87,34,0.3)] transition-all duration-300 group animate-flow-in"
+      style={{ 
+        animationDelay: `${index * 0.15}s`,
+        transformStyle: "preserve-3d",
+        willChange: "transform"
+      }}
+    >
+      <div className="flex items-start gap-4 mb-6">
+        <div className="p-3 rounded-xl bg-gradient-primary group-hover:scale-110 transition-transform glow-primary">
+          <service.icon className="h-6 w-6 text-white" />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+          <p className="text-muted-foreground text-sm">
+            {service.description}
+          </p>
+        </div>
+      </div>
+
+      <ul className="space-y-2">
+        {service.features.map((feature: string) => (
+          <li
+            key={feature}
+            className="flex items-center gap-2 text-sm text-muted-foreground"
+          >
+            <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export const Services = () => {
   const services = [
@@ -60,7 +101,7 @@ export const Services = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              <span className="text-gradient">Services</span> I Offer
+              <span className="text-shimmer">Services</span> I Offer
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Comprehensive solutions for your technical needs, from concept to
@@ -70,35 +111,7 @@ export const Services = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <div
-                key={service.title}
-                className="glass-card rounded-2xl p-8 hover:shadow-[0_0_40px_rgba(255,87,34,0.3)] transition-all duration-300 group animate-flow-in animate-tilt"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-gradient-primary group-hover:scale-110 transition-transform glow-primary">
-                    <service.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground text-sm">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-
-                <ul className="space-y-2">
-                  {service.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-center gap-2 text-sm text-muted-foreground"
-                    >
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ServiceCard key={service.title} service={service} index={index} />
             ))}
           </div>
         </div>

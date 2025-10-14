@@ -1,4 +1,27 @@
 import { Code2, Brain, Cloud, Palette } from "lucide-react";
+import { useTiltEffect } from "@/hooks/useTiltEffect";
+
+const SkillCard = ({ skill, index }: { skill: any; index: number }) => {
+  const tiltRef = useTiltEffect<HTMLDivElement>();
+
+  return (
+    <div
+      ref={tiltRef}
+      className="glass-card rounded-xl p-6 hover:shadow-[0_0_30px_rgba(0,188,212,0.2)] transition-all duration-300 animate-flow-in"
+      style={{ 
+        animationDelay: `${(index + 2) * 0.15}s`,
+        transformStyle: "preserve-3d",
+        willChange: "transform"
+      }}
+    >
+      <skill.icon className={`h-12 w-12 mb-4 ${skill.color}`} />
+      <h4 className="font-bold mb-2">{skill.title}</h4>
+      <p className="text-sm text-muted-foreground">
+        {skill.description}
+      </p>
+    </div>
+  );
+};
 
 export const About = () => {
   const skills = [
@@ -36,7 +59,7 @@ export const About = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              About <span className="text-gradient">Me</span>
+              About <span className="text-shimmer">Me</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Passionate about creating innovative solutions that bridge the gap
@@ -77,17 +100,7 @@ export const About = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {skills.map((skill, index) => (
-              <div
-                key={skill.title}
-                className="glass-card rounded-xl p-6 hover:scale-105 transition-transform duration-300 animate-flow-in"
-                style={{ animationDelay: `${(index + 2) * 0.15}s` }}
-              >
-                <skill.icon className={`h-12 w-12 mb-4 ${skill.color}`} />
-                <h4 className="font-bold mb-2">{skill.title}</h4>
-                <p className="text-sm text-muted-foreground">
-                  {skill.description}
-                </p>
-              </div>
+              <SkillCard key={skill.title} skill={skill} index={index} />
             ))}
           </div>
         </div>

@@ -1,4 +1,14 @@
+import { useEffect, useState } from "react";
+
 export const FloatingParticles = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
@@ -18,6 +28,8 @@ export const FloatingParticles = () => {
               : "0 0 20px hsl(var(--secondary) / 0.5)",
             animationDelay: `${Math.random() * 5}s`,
             animationDuration: `${Math.random() * 10 + 15}s`,
+            transform: `translateY(${scrollY * (i % 3 === 0 ? 0.1 : i % 3 === 1 ? 0.15 : 0.05)}px)`,
+            willChange: "transform",
           }}
         />
       ))}

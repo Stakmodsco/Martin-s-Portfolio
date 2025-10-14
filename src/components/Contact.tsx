@@ -14,7 +14,9 @@ export const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent! I'll get back to you soon.");
+    toast.success("Message sent successfully! 🎉", {
+      description: "I'll get back to you as soon as possible.",
+    });
     setFormData({ name: "", email: "", message: "" });
   };
 
@@ -35,7 +37,7 @@ export const Contact = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Let's <span className="text-gradient">Connect</span>
+              Let's <span className="text-shimmer">Connect</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Have a project in mind or want to discuss opportunities? I'd love

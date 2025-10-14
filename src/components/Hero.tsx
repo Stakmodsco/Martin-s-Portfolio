@@ -26,7 +26,7 @@ export const Hero = () => {
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Building{" "}
-            <span className="text-gradient animate-glow">
+            <span className="text-shimmer animate-glow">
               Scalable Systems
             </span>
             <br />& Intelligent AI Solutions

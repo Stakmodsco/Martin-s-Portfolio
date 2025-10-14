@@ -1,6 +1,67 @@
 import { useState } from "react";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTiltEffect } from "@/hooks/useTiltEffect";
+
+const ProjectCard = ({ project, index }: { project: any; index: number }) => {
+  const tiltRef = useTiltEffect<HTMLDivElement>();
+
+  return (
+    <div
+      ref={tiltRef}
+      className="glass-card rounded-2xl overflow-hidden group hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all duration-300 animate-flow-in"
+      style={{ 
+        animationDelay: `${index * 0.15}s`,
+        transformStyle: "preserve-3d",
+        willChange: "transform"
+      }}
+    >
+      <div className="relative h-48 overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+      </div>
+
+      <div className="p-6">
+        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+        <p className="text-sm text-muted-foreground mb-4">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag: string) => (
+            <span
+              key={tag}
+              className="px-2 py-1 text-xs rounded-md bg-primary/10 text-primary border border-primary/20"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex gap-3">
+          <a
+            href={project.github}
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            <Github className="h-4 w-4" />
+            Code
+          </a>
+          <a
+            href={project.demo}
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            <ExternalLink className="h-4 w-4" />
+            Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -90,7 +151,7 @@ export const Projects = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Featured <span className="text-gradient">Projects</span>
+              Featured <span className="text-shimmer">Projects</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               A selection of projects showcasing my expertise in full-stack
@@ -113,55 +174,7 @@ export const Projects = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <div
-                key={project.title}
-                className="glass-card rounded-2xl overflow-hidden group hover:scale-105 hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all duration-300 animate-flow-in animate-tilt"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 text-xs rounded-md bg-primary/10 text-primary border border-primary/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-3">
-                    <a
-                      href={project.github}
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Github className="h-4 w-4" />
-                      Code
-                    </a>
-                    <a
-                      href={project.demo}
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Demo
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <ProjectCard key={project.title} project={project} index={index} />
             ))}
           </div>
         </div>
