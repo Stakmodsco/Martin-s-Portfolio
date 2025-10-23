@@ -71,54 +71,76 @@ export const Projects = () => {
       demo: "https://medical-billing-ai-theta.vercel.app/",
     },
     {
-      title: "E-Commerce Marketplace",
+      title: "Theos Educational Platform",
+      category: "EdTech",
+      description:
+        "Cross-platform educational app and web platform for theological studies with offline access, structured courses, in-app assessments, live sessions, and AI-powered insights.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758119072/Student_Dashboard_-_theos_Educational_Platform_1_msrqdd.png",
+      tags: ["Flutter", "React.js", "Python", "FastAPI", "AI in Education", "EdTech"],
+      demo: "https://stakmodsco.github.io/theos_educational_platform/",
+    },
+    {
+      title: "Global Health Check App",
+      category: "ai mobile app",
+      description:
+        "AI-powered mobile and web app for symptom analysis, severity ratings, and guidance",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758125547/Medical_App_UI_concept_MediCare___by_Abdullah_Al_Mamun_on_Dribbble_g3arma.png",
+      tags: ["Python", "FastAPI", "Flutter", "React.js", "LLM Integration"],
+      demo: "https://res.cloudinary.com/dud0zwl1t/video/upload/v1758125254/WhatsApp_Video_2025-09-17_at_18.12.06_rllmyw.mp4"",
+    },
+    {
+      title: "Responsive Furniture E-Commerce Template",
       category: "ecommerce",
       description:
-        "Full-featured marketplace with payment integration, inventory management, and real-time notifications.",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
-      tags: ["Next.js", "Stripe", "MongoDB", "Redis"],
-      github: "#",
-      demo: "#",
+        "Mobile-first e-commerce template with optimized performance.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758120386/Furniture_web_landing_page_1_r0a2c2.png",
+      tags: ["HTML", "Tailwind CSS", "JavaScript"],
+      demo: "https://stakmodsco.github.io/Furniture-Web-Interactive-Landing-page/",
     },
     {
-      title: "Intelligent Chatbot System",
-      category: "ai",
-      description:
-        "Enterprise chatbot using LangChain and GPT-4 with custom knowledge base integration and conversation memory.",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
-      tags: ["LangChain", "OpenAI", "Python", "Docker"],
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "Cloud Infrastructure Automation",
-      category: "devops",
-      description:
-        "Kubernetes-based infrastructure with automated scaling, monitoring, and deployment pipelines.",
-      image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=600&fit=crop",
-      tags: ["Kubernetes", "Terraform", "AWS", "GitLab CI"],
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "Real-Time Collaboration Tool",
+      title: "Delivery Management/Logistics Platforml",
       category: "saas",
       description:
-        "WebSocket-based collaboration platform with document editing, video calls, and team management.",
-      image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop",
-      tags: ["React", "WebSocket", "Node.js", "WebRTC"],
-      github: "#",
-      demo: "#",
+        "A modern delivery management SaaS platform that enables logistics companies to manage, track, and optimize package deliveries in real time. Built with a sleek React.js frontend and powerful Node.js backend, it supports client dashboards, driver management, and seamless payment integration for a complete end-to-end logistics solution.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1759744561/SafeExpress_-_Professional_Delivery_Services___Fast_Secure_Package_Delivery_vv7umh.png",
+      tags: ["React.js", "Node.js", "MongoDB", "Stripe", "TailwindCSS", "WebSocket", "WebRTC"],
+      demo: "https://swiftride-log.vercel.app/",
     },
     {
-      title: "Modern Admin Dashboard",
-      category: "template",
+      title: "Beauty Salon Website",
+      category: "business website",
       description:
-        "Beautiful, responsive admin template with charts, data tables, and comprehensive UI components.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      tags: ["React", "TailwindCSS", "Recharts", "TypeScript"],
-      github: "#",
-      demo: "#",
+        "A modern, elegant salon website designed to showcase services, stylists, and client experiences while enabling effortless online bookings.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1759741518/Luxe_Hair_Studio_-_Premium_Hair_Salon_Styling_4_mejwa1.png",
+      tags: ["React.js", "Node.js", "MongoDB", "Stripe", "TailwindCSS"],
+      demo: "https://gilded-strands-salon.vercel.app/",
+    },
+    {
+      title: "WellnesCart Mobile App",
+      category: "e-commerce mobile app",
+      description:
+        "Mobile e-commerce app for selling health products, supplements, and wellness packages.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758124885/WellnessCart_UI_boaq4o.png",
+      tags: ["Flutter", "React Native", "Stripe", "Firebase"],
+      demo: "https://res.cloudinary.com/dud0zwl1t/video/upload/v1758124893/WhatsApp_Video_2025-09-17_at_18.10.36_lbw8kb.mp4",
+    },
+    {
+      title: "Contact/Login Page",
+      category: "UI/UX template",
+      description:
+        "A clean, responsive Contact & Login page built with HTML, CSS, and JS. Features modern forms, data tables, and smooth UI components, perfect for web apps or portfolios.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758120032/Login_Contact_Page_iyyuai.png",
+      tags: ["HTML", "CSS", "JS"],
+      demo: "https://stakmodsco.github.io/Contact-Login-page/",
+    },
+    {
+      title: "LeadMind AI CRM Dashboard",
+      category: "UI/UX template",
+      description:
+        "AI-driven real-time CRM dashboard with conversation tracking, funnel visualization, and chat automation.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758119573/LeadMind_AI_Dashboard_ntu6qf.png",
+      tags: ["React.js", "Tailwind CSS", "AI Components"],
+      demo: "https://stakmodsco.github.io/leadmind-ai-dashboard/",
     },
   ];
 
