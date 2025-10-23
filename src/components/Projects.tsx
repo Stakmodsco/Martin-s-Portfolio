@@ -134,6 +134,15 @@ export const Projects = () => {
       demo: "https://stakmodsco.github.io/Contact-Login-page/",
     },
     {
+      title: "AI Personal COO",
+      category: "saas",
+      description:
+        "AI-powered executive operations assistant that helps businesses automate strategy, optimize workflows, and make data-driven decisions with real-time insights.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1761232577/AI_Personal_COO_-_Your_Intelligent_Executive_Assistant_qlaq2e.png",
+      tags: ["React.js", "TypeScript", "Tailwind CSS", "Vite", "AI Automation", "LangChain"],
+      demo: "https://ai-personal-coo.vercel.app/",
+    },
+    {
       title: "LeadMind AI CRM Dashboard",
       category: "landing page",
       description:
