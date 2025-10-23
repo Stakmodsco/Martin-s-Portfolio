@@ -43,13 +43,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
         </div>
 
         <div className="flex gap-3">
-          <a
-            href={project.github}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            <Github className="h-4 w-4" />
-            Code
-          </a>
+
           <a
             href={project.demo}
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -68,14 +62,13 @@ export const Projects = () => {
 
   const projects = [
     {
-      title: "AI-Powered SaaS Platform",
+      title: "Medical-Billing Platform",
       category: "saas",
       description:
-        "Multi-tenant SaaS platform with AI-driven analytics and automation. Built with React, FastAPI, and PostgreSQL.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-      tags: ["React", "FastAPI", "AI", "PostgreSQL"],
-      github: "#",
-      demo: "#",
+        "Modular microservices with GitOps, event-driven pipelines, and autoscaling. Demonstrates production-grade ops and platform mindset.",
+      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758122328/revenue-glide-ai_ljl1bd.png",
+      tags: ["K8s", "Helm", "ArgoCD", "gRPC", "Kafka"],
+      demo: "https://medical-billing-ai-theta.vercel.app/",
     },
     {
       title: "E-Commerce Marketplace",
