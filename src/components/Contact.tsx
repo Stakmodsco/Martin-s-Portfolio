@@ -61,7 +61,7 @@ export const Contact = () => {
                     <div>
                       <p className="font-medium">Email</p>
                       <p className="text-sm text-muted-foreground">
-                        contact@example.com
+                        stakmodsco@gmail.com
                       </p>
                     </div>
                   </a>
@@ -78,7 +78,7 @@ export const Contact = () => {
                     <div>
                       <p className="font-medium">GitHub</p>
                       <p className="text-sm text-muted-foreground">
-                        @yourusername
+                        @Stakmodsco
                       </p>
                     </div>
                   </a>
@@ -95,7 +95,7 @@ export const Contact = () => {
                     <div>
                       <p className="font-medium">LinkedIn</p>
                       <p className="text-sm text-muted-foreground">
-                        /in/yourprofile
+                        /in/martin-kihiu-04607a235
                       </p>
                     </div>
                   </a>
