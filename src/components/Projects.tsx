@@ -126,7 +126,7 @@ export const Projects = () => {
     },
     {
       title: "Contact/Login Page",
-      category: "UI/UX template",
+      category: "template",
       description:
         "A clean, responsive Contact & Login page built with HTML, CSS, and JS. Features modern forms, data tables, and smooth UI components, perfect for web apps or portfolios.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758120032/Login_Contact_Page_iyyuai.png",
