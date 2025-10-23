@@ -11,9 +11,6 @@ export const Footer = () => {
             <p className="text-sm text-muted-foreground">
               © {currentYear} Stakmods. All rights reserved.
             </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Built with React, TailwindCSS, and passion.
-            </p>
           </div>
 
           <div className="flex items-center gap-6">
