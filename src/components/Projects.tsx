@@ -72,7 +72,7 @@ export const Projects = () => {
     },
     {
       title: "Theos Educational Platform",
-      category: "EdTech",
+      category: "edtech",
       description:
         "Cross-platform educational app and web platform for theological studies with offline access, structured courses, in-app assessments, live sessions, and AI-powered insights.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758119072/Student_Dashboard_-_theos_Educational_Platform_1_msrqdd.png",
@@ -81,7 +81,7 @@ export const Projects = () => {
     },
     {
       title: "Global Health Check App",
-      category: "ai mobile app",
+      category: "mobile app",
       description:
         "AI-powered mobile and web app for symptom analysis, severity ratings, and guidance",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758125547/Medical_App_UI_concept_MediCare___by_Abdullah_Al_Mamun_on_Dribbble_g3arma.png",
@@ -108,7 +108,7 @@ export const Projects = () => {
     },
     {
       title: "Beauty Salon Website",
-      category: "business website",
+      category: "website",
       description:
         "A modern, elegant salon website designed to showcase services, stylists, and client experiences while enabling effortless online bookings.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1759741518/Luxe_Hair_Studio_-_Premium_Hair_Salon_Styling_4_mejwa1.png",
@@ -117,7 +117,7 @@ export const Projects = () => {
     },
     {
       title: "WellnesCart Mobile App",
-      category: "e-commerce mobile app",
+      category: "mobile app",
       description:
         "Mobile e-commerce app for selling health products, supplements, and wellness packages.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758124885/WellnessCart_UI_boaq4o.png",
@@ -135,7 +135,7 @@ export const Projects = () => {
     },
     {
       title: "LeadMind AI CRM Dashboard",
-      category: "UI/UX template",
+      category: "landing page",
       description:
         "AI-driven real-time CRM dashboard with conversation tracking, funnel visualization, and chat automation.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758119573/LeadMind_AI_Dashboard_ntu6qf.png",
@@ -147,10 +147,12 @@ export const Projects = () => {
   const filters = [
     { id: "all", label: "All Projects" },
     { id: "saas", label: "SaaS Platforms" },
-    { id: "ai", label: "AI Solutions" },
+    { id: "landing page", label: "Landing Page" },
     { id: "ecommerce", label: "E-Commerce" },
-    { id: "devops", label: "DevOps" },
-    { id: "template", label: "Templates" },
+    { id: "mobile app", label: "Mobile App" },
+    { id: "website", label: "Website" },
+    { id: "edtech", label: "EdTech" },
+    { id: "template", label: "UI/UX Templates" },
   ];
 
   const filteredProjects =
