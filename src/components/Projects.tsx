@@ -86,7 +86,7 @@ export const Projects = () => {
         "AI-powered mobile and web app for symptom analysis, severity ratings, and guidance",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758125547/Medical_App_UI_concept_MediCare___by_Abdullah_Al_Mamun_on_Dribbble_g3arma.png",
       tags: ["Python", "FastAPI", "Flutter", "React.js", "LLM Integration"],
-      demo: "https://res.cloudinary.com/dud0zwl1t/video/upload/v1758125254/WhatsApp_Video_2025-09-17_at_18.12.06_rllmyw.mp4"",
+      demo: "https://res.cloudinary.com/dud0zwl1t/video/upload/v1758125254/WhatsApp_Video_2025-09-17_at_18.12.06_rllmyw.mp4",
     },
     {
       title: "Responsive Furniture E-Commerce Template",
@@ -98,7 +98,7 @@ export const Projects = () => {
       demo: "https://stakmodsco.github.io/Furniture-Web-Interactive-Landing-page/",
     },
     {
-      title: "Delivery Management/Logistics Platforml",
+      title: "Delivery Management/Logistics Platform",
       category: "saas",
       description:
         "A modern delivery management SaaS platform that enables logistics companies to manage, track, and optimize package deliveries in real time. Built with a sleek React.js frontend and powerful Node.js backend, it supports client dashboards, driver management, and seamless payment integration for a complete end-to-end logistics solution.",
