@@ -7,8 +7,8 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: 8, label: "Years Building", suffix: "+" },
-  { value: 4, label: "Core Disciplines", suffix: "" },
+  { value: 12, label: "Flagship Case Studies", suffix: "" },
+  { value: 6, label: "Engineering Domains", suffix: "" },
   { value: 3, label: "Platforms: Web, iOS, Android", suffix: "" },
   { value: 1, label: "Goal: Production-Ready Products", suffix: "" },
 ];
@@ -27,9 +27,7 @@ const CountUp = ({ end, duration = 2000, suffix = "" }: { end: number; duration?
           const animate = () => {
             const elapsed = Date.now() - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            const current = Math.floor(progress * end);
-            setCount(current);
-
+            setCount(Math.floor(progress * end));
             if (progress < 1) requestAnimationFrame(animate);
           };
           animate();
