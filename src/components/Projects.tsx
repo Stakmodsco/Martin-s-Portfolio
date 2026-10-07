@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTiltEffect } from "@/hooks/useTiltEffect";
 
@@ -10,53 +10,42 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
     <div
       ref={tiltRef}
       className="glass-card rounded-2xl overflow-hidden group hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all duration-300 animate-flow-in"
-      style={{
-        animationDelay: `${index * 0.12}s`,
-        transformStyle: "preserve-3d",
-        willChange: "transform",
-      }}
+      style={{ animationDelay: `${index * 0.1}s`, transformStyle: "preserve-3d", willChange: "transform" }}
     >
       <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 via-background to-secondary/20">
         {project.image ? (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-          />
+          <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         ) : (
           <div className="h-full w-full flex items-center justify-center px-8 text-center">
             <span className="text-2xl font-bold text-shimmer">{project.visualLabel}</span>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent" />
-        <div className="absolute top-4 left-4 rounded-full border border-white/15 bg-background/65 backdrop-blur-xl px-3 py-1 text-xs font-medium">
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
+        <div className="absolute top-4 left-4 rounded-full border border-white/15 bg-background/70 backdrop-blur-xl px-3 py-1 text-xs font-medium">
           {project.stage}
         </div>
       </div>
 
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-        <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
+        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
+        <div className="flex flex-wrap gap-2 mb-5">
           {project.tags.map((tag: string) => (
-            <span key={tag} className="px-2 py-1 text-xs rounded-md bg-primary/10 text-primary border border-primary/20">
-              {tag}
-            </span>
+            <span key={tag} className="px-2 py-1 text-xs rounded-md bg-primary/10 text-primary border border-primary/20">{tag}</span>
           ))}
         </div>
-
-        {project.demo && (
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            <ExternalLink className="h-4 w-4" />
-            View Project
-          </a>
-        )}
+        <div className="flex flex-wrap gap-4">
+          {project.demo && (
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <ExternalLink className="h-4 w-4" /> Live project
+            </a>
+          )}
+          {project.repo && (
+            <a href={project.repo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Github className="h-4 w-4" /> Repository
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -70,95 +59,140 @@ export const Projects = () => {
       title: "NotMe",
       category: "mobile",
       stage: "Flagship Mobile Product",
-      description:
-        "Cross-platform secure document app with AI-assisted extraction, reminders, authentication hardening, subscriptions, biometrics/MFA, cloud migration, background processing, and production release workflows.",
+      description: "Production-hardened iOS and Android document-expiry app with cloud sync, renewal reminders, optional AI extraction and assistant features, secure local locking, family profiles, RevenueCat subscriptions, EAS release workflows, backend validation, and dependency-security checks.",
       image: "",
-      visualLabel: "Secure documents. Intelligent reminders. Production-ready mobile.",
-      tags: ["React Native", "Expo", "TypeScript", "Python", "FastAPI", "Supabase", "RevenueCat", "AWS"],
+      visualLabel: "Secure documents · AI assistance · Mobile release engineering",
+      tags: ["React Native", "Expo", "TypeScript", "FastAPI", "Supabase", "MongoDB", "RevenueCat", "EAS"],
       demo: "",
+      repo: "",
+    },
+    {
+      title: "PayDouFlow",
+      category: "fintech",
+      stage: "Payment Infrastructure",
+      description: "M-Pesa/Daraja payment core engineered around encrypted credentials, tenant isolation, idempotent STK callbacks, immutable ledgers, atomic payment finalization, signed webhooks, replay protection, diagnostics, and repair tooling for stuck transactions.",
+      image: "",
+      visualLabel: "Payments that reconcile safely",
+      tags: ["M-Pesa", "Daraja", "Supabase", "RLS", "AES-256-GCM", "Webhooks", "Ledger", "TypeScript"],
+      demo: "",
+      repo: "",
+    },
+    {
+      title: "Vibe Guard",
+      category: "security",
+      stage: "Developer Security SaaS",
+      description: "A security and production-readiness product for AI-built and vibe-coded applications. It guides builders through cleanup, professionalization, secure implementation patterns, verification tests, launch checklists, role-based premium access, and stack-specific security modules.",
+      image: "",
+      visualLabel: "Build fast. Clean it up. Lock it down.",
+      tags: ["React", "TypeScript", "Supabase", "RLS", "Edge Functions", "Zod", "Security", "SaaS"],
+      demo: "",
+      repo: "",
     },
     {
       title: "Ishi Property Hub",
       category: "platform",
-      stage: "Property Platform",
-      description:
-        "Mobile-first Kenyan property platform spanning BnB stays, long-term rentals, verified listings, house-hunter discovery, authentication, notifications, conversion-focused flows, and app foundations for Android and iOS.",
+      stage: "Property Platform + Mobile App",
+      description: "Verification-led Kenyan property platform for vetted short stays, genuine rentals, and early vacancy alerts. The product uses controlled publishing, owner-only approvals, responsive editorial UX, partner submission workflows, and Capacitor-based mobile delivery.",
       image: "",
-      visualLabel: "Verified living across Kenya",
-      tags: ["React", "TypeScript", "Mobile-first UX", "Auth", "Notifications", "Property Tech"],
+      visualLabel: "Find your place. Live sure.",
+      tags: ["React", "TypeScript", "Supabase", "Capacitor", "Property Tech", "Mobile-first UX", "Verification"],
       demo: "",
+      repo: "",
+    },
+    {
+      title: "TaskBridge",
+      category: "platform",
+      stage: "Work Platform",
+      description: "A Kenyan digital-work platform connecting freelancers with paid AI training, annotation, transcription, moderation, writing, research, and evaluation tasks, with account security, eligibility flows, managed-team hiring, and M-Pesa-oriented payout UX.",
+      image: "",
+      visualLabel: "Digital work for Kenyan talent",
+      tags: ["React", "TypeScript", "TanStack Router", "Supabase", "Auth", "M-Pesa UX", "SEO"],
+      demo: "",
+      repo: "https://github.com/Stakmodsco/taskbridge-connect",
     },
     {
       title: "Balipa",
-      category: "saas",
-      stage: "Billing System",
-      description:
-        "Kenyan billing product designed for schools and rentals, with payment tracking, paid-versus-balance logic, overpayment handling, account records, and automated SMS updates for users.",
+      category: "fintech",
+      stage: "Billing Infrastructure",
+      description: "Kenyan billing and reconciliation infrastructure beginning with school fees: students and guardians, fee structures, append-oriented ledgers, payment allocation, automatic paid/outstanding/credit balances, receipts, statements, reporting, and notification-ready workflows. The core engine is designed to extend to rentals.",
       image: "",
-      visualLabel: "Paid. Balance. Clear communication.",
-      tags: ["SaaS", "Billing", "Payments", "SMS", "Kenya", "Product Design"],
+      visualLabel: "Paid. Balanced.",
+      tags: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Redis", "Billing", "Reconciliation", "M-Pesa"],
       demo: "",
+      repo: "",
     },
     {
-      title: "Vibe Guard",
+      title: "LexMind AI Contracts",
       category: "ai",
-      stage: "AI Developer Product",
-      description:
-        "AI-assisted development platform work covering request/debugging services, entitlements and usage limits, notification queues, pricing fallbacks, reusable UI/UX systems, and animated product experiences.",
+      stage: "Legal AI Product",
+      description: "AI-assisted contract product with contract generation and refinement workflows, document management, billing, authentication, account settings, and a full SaaS dashboard experience designed around professional legal-document creation.",
       image: "",
-      visualLabel: "AI development with guardrails",
-      tags: ["AI", "TypeScript", "Product Systems", "Queues", "Entitlements", "UI/UX"],
+      visualLabel: "AI-assisted contract workflows",
+      tags: ["React", "TypeScript", "AI", "SaaS", "Document Workflows", "Billing", "Framer Motion"],
       demo: "",
+      repo: "",
     },
     {
-      title: "Fino Fiore",
-      category: "commerce",
-      stage: "Premium Commerce Concept",
-      description:
-        "Luxury fragrance storefront direction with editorial mobile-first UI, cinematic product storytelling, exploded scent-note interactions, premium imagery, structured product discovery, and performance-aware responsive media.",
+      title: "SOC Genesis AI",
+      category: "security",
+      stage: "Security Operations Product",
+      description: "Security-operations interface for alert ingestion, incident triage, incident detail analysis, confidence scoring, security metrics, and operational settings — exploring how AI-assisted workflows can reduce noise and accelerate SOC response.",
       image: "",
-      visualLabel: "Luxury fragrance, designed as an experience",
-      tags: ["React", "TypeScript", "Tailwind CSS", "UI/UX", "E-Commerce", "Motion Design"],
+      visualLabel: "AI-assisted security operations",
+      tags: ["React", "TypeScript", "Cybersecurity", "Incident Triage", "SOC", "Analytics"],
       demo: "",
+      repo: "",
     },
     {
       title: "Medical Billing AI",
-      category: "saas",
-      stage: "Cloud-Native Platform",
-      description:
-        "Modular medical-billing platform demonstrating event-driven services, GitOps delivery, autoscaling, service-to-service communication, and production-minded platform architecture.",
+      category: "ai",
+      stage: "Healthcare Revenue Product",
+      description: "Healthcare revenue and billing product with authentication, dashboard experiences, revenue and expense views, ROI tooling, security and pricing surfaces, and a polished enterprise-facing React interface.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758122328/revenue-glide-ai_ljl1bd.png",
-      tags: ["Kubernetes", "Helm", "ArgoCD", "gRPC", "Kafka"],
+      tags: ["React", "TypeScript", "Supabase", "Healthcare", "Revenue Analytics", "Dashboard UX"],
       demo: "https://medical-billing-ai-theta.vercel.app/",
+      repo: "",
     },
     {
       title: "Theos Educational Platform",
       category: "platform",
       stage: "EdTech Platform",
-      description:
-        "Cross-platform theological learning product with structured courses, assessments, offline-oriented experiences, live learning features, and AI-assisted educational workflows.",
+      description: "Cross-platform theological learning experience with structured educational content and a dashboard-led interface, representing my work across learning-product UX and multi-platform application delivery.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758119072/Student_Dashboard_-_theos_Educational_Platform_1_msrqdd.png",
-      tags: ["Flutter", "React", "Python", "FastAPI", "AI", "EdTech"],
+      tags: ["Flutter", "React", "Python", "FastAPI", "EdTech", "Cross-platform"],
       demo: "https://stakmodsco.github.io/theos_educational_platform/",
+      repo: "https://github.com/Stakmodsco/theos_educational_platform",
     },
     {
       title: "AI Personal COO",
       category: "ai",
       stage: "AI Operations Product",
-      description:
-        "Executive operations assistant focused on workflow automation, business decision support, real-time operational insight, and AI-assisted strategy execution.",
+      description: "Executive operations assistant concept focused on workflow automation, operational visibility, decision support, and AI-assisted business execution through a polished web product experience.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1761232577/AI_Personal_COO_-_Your_Intelligent_Executive_Assistant_qlaq2e.png",
-      tags: ["React", "TypeScript", "Tailwind CSS", "AI Automation", "LangChain"],
+      tags: ["React", "TypeScript", "AI Automation", "Operations", "Product UX"],
       demo: "https://ai-personal-coo.vercel.app/",
+      repo: "https://github.com/Stakmodsco/AI-Personal-COO",
+    },
+    {
+      title: "Fino Fiore",
+      category: "commerce",
+      stage: "Luxury Commerce Direction",
+      description: "Luxury fragrance commerce work combining catalog architecture, Kenya-specific pricing logic, premium product presentation, high-quality imagery, and a new cinematic design direction built around animated perfume-note storytelling.",
+      image: "",
+      visualLabel: "Fragrance commerce as a visual experience",
+      tags: ["React", "TypeScript", "Commerce", "UI/UX", "Motion", "Product Storytelling"],
+      demo: "",
+      repo: "",
     },
   ];
 
   const filters = [
-    { id: "all", label: "Selected Work" },
+    { id: "all", label: "Flagship Work" },
     { id: "mobile", label: "Mobile" },
-    { id: "platform", label: "Platforms" },
-    { id: "saas", label: "SaaS" },
     { id: "ai", label: "AI" },
+    { id: "fintech", label: "Fintech" },
+    { id: "security", label: "Security" },
+    { id: "platform", label: "Platforms" },
     { id: "commerce", label: "Commerce & UX" },
   ];
 
@@ -167,25 +201,16 @@ export const Projects = () => {
   return (
     <section id="projects" className="py-20 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/5 to-background" />
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 animate-flow-in">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Selected <span className="text-shimmer">Product Work</span>
-            </h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Flagship <span className="text-shimmer">Engineering Work</span></h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-              A portfolio of mobile products, AI systems, SaaS platforms, cloud architecture, and premium UI/UX work — showing both what I build and how I think about production software.
+              Selected from a much larger GitHub body of work. I prioritize the projects that best demonstrate production engineering, product thinking, security, AI, mobile delivery, fintech, and interface quality rather than treating every experiment or remix as a separate case study.
             </p>
-
             <div className="flex flex-wrap justify-center gap-2">
               {filters.map((filter) => (
-                <Button
-                  key={filter.id}
-                  variant={activeFilter === filter.id ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveFilter(filter.id)}
-                >
+                <Button key={filter.id} variant={activeFilter === filter.id ? "default" : "outline"} size="sm" onClick={() => setActiveFilter(filter.id)}>
                   {filter.label}
                 </Button>
               ))}
@@ -193,9 +218,19 @@ export const Projects = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
+            {filteredProjects.map((project, index) => <ProjectCard key={project.title} project={project} index={index} />)}
+          </div>
+
+          <div className="mt-12 glass-card rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div>
+              <h3 className="text-xl font-bold mb-2">More work lives on GitHub</h3>
+              <p className="text-sm text-muted-foreground max-w-3xl">
+                The wider repository collection includes additional cybersecurity products, commerce builds, SaaS experiments, finance products, mobility concepts, landing experiences, and earlier UI explorations. I keep this page curated so the strongest engineering work stays easy to evaluate.
+              </p>
+            </div>
+            <a href="https://github.com/Stakmodsco?tab=repositories" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="whitespace-nowrap"><Github className="h-4 w-4 mr-2" /> Explore GitHub</Button>
+            </a>
           </div>
         </div>
       </div>
