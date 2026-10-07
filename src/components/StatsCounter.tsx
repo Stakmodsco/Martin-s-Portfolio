@@ -7,10 +7,10 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: 50, label: "Projects Completed", suffix: "+" },
-  { value: 5, label: "Years Experience", suffix: "+" },
-  { value: 30, label: "Happy Clients", suffix: "+" },
-  { value: 99, label: "Success Rate", suffix: "%" },
+  { value: 8, label: "Years Building", suffix: "+" },
+  { value: 4, label: "Core Disciplines", suffix: "" },
+  { value: 3, label: "Platforms: Web, iOS, Android", suffix: "" },
+  { value: 1, label: "Goal: Production-Ready Products", suffix: "" },
 ];
 
 const CountUp = ({ end, duration = 2000, suffix = "" }: { end: number; duration?: number; suffix?: string }) => {
@@ -30,9 +30,7 @@ const CountUp = ({ end, duration = 2000, suffix = "" }: { end: number; duration?
             const current = Math.floor(progress * end);
             setCount(current);
 
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            }
+            if (progress < 1) requestAnimationFrame(animate);
           };
           animate();
         }
@@ -40,10 +38,7 @@ const CountUp = ({ end, duration = 2000, suffix = "" }: { end: number; duration?
       { threshold: 0.5 }
     );
 
-    if (countRef.current) {
-      observer.observe(countRef.current);
-    }
-
+    if (countRef.current) observer.observe(countRef.current);
     return () => observer.disconnect();
   }, [end, duration, hasAnimated]);
 
@@ -58,7 +53,6 @@ export const StatsCounter = () => {
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5" />
-      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {stats.map((stat) => (
