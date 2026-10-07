@@ -10,47 +10,41 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
     <div
       ref={tiltRef}
       className="glass-card rounded-2xl overflow-hidden group hover:shadow-[0_0_40px_rgba(0,188,212,0.3)] transition-all duration-300 animate-flow-in"
-      style={{ 
-        animationDelay: `${index * 0.15}s`,
-        transformStyle: "preserve-3d",
-        willChange: "transform"
-      }}
+      style={{ animationDelay: `${index * 0.1}s`, transformStyle: "preserve-3d", willChange: "transform" }}
     >
-      <div className="relative h-48 overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 via-background to-secondary/20">
+        {project.image ? (
+          <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        ) : (
+          <div className="h-full w-full flex items-center justify-center px-8 text-center">
+            <span className="text-2xl font-bold text-shimmer">{project.visualLabel}</span>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
+        <div className="absolute top-4 left-4 rounded-full border border-white/15 bg-background/70 backdrop-blur-xl px-3 py-1 text-xs font-medium">
+          {project.stage}
+        </div>
       </div>
 
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
+        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
+        <div className="flex flex-wrap gap-2 mb-5">
           {project.tags.map((tag: string) => (
-            <span
-              key={tag}
-              className="px-2 py-1 text-xs rounded-md bg-primary/10 text-primary border border-primary/20"
-            >
-              {tag}
-            </span>
+            <span key={tag} className="px-2 py-1 text-xs rounded-md bg-primary/10 text-primary border border-primary/20">{tag}</span>
           ))}
         </div>
-
-        <div className="flex gap-3">
-
-          <a
-            href={project.demo}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            <ExternalLink className="h-4 w-4" />
-            Demo
-          </a>
+        <div className="flex flex-wrap gap-4">
+          {project.demo && (
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <ExternalLink className="h-4 w-4" /> Live project
+            </a>
+          )}
+          {project.repo && (
+            <a href={project.repo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Github className="h-4 w-4" /> Repository
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -62,136 +56,161 @@ export const Projects = () => {
 
   const projects = [
     {
-      title: "Medical-Billing Platform",
-      category: "saas",
-      description:
-        "Modular microservices with GitOps, event-driven pipelines, and autoscaling. Demonstrates production-grade ops and platform mindset.",
+      title: "NotMe",
+      category: "mobile",
+      stage: "Flagship Mobile Product",
+      description: "Production-hardened iOS and Android document-expiry app with cloud sync, renewal reminders, optional AI extraction and assistant features, secure local locking, family profiles, RevenueCat subscriptions, EAS release workflows, backend validation, and dependency-security checks.",
+      image: "",
+      visualLabel: "Secure documents · AI assistance · Mobile release engineering",
+      tags: ["React Native", "Expo", "TypeScript", "FastAPI", "Supabase", "MongoDB", "RevenueCat", "EAS"],
+      demo: "",
+      repo: "",
+    },
+    {
+      title: "PayDouFlow",
+      category: "fintech",
+      stage: "Payment Infrastructure",
+      description: "M-Pesa/Daraja payment core engineered around encrypted credentials, tenant isolation, idempotent STK callbacks, immutable ledgers, atomic payment finalization, signed webhooks, replay protection, diagnostics, and repair tooling for stuck transactions.",
+      image: "",
+      visualLabel: "Payments that reconcile safely",
+      tags: ["M-Pesa", "Daraja", "Supabase", "RLS", "AES-256-GCM", "Webhooks", "Ledger", "TypeScript"],
+      demo: "",
+      repo: "",
+    },
+    {
+      title: "Vibe Guard",
+      category: "security",
+      stage: "Developer Security SaaS",
+      description: "A security and production-readiness product for AI-built and vibe-coded applications. It guides builders through cleanup, professionalization, secure implementation patterns, verification tests, launch checklists, role-based premium access, and stack-specific security modules.",
+      image: "",
+      visualLabel: "Build fast. Clean it up. Lock it down.",
+      tags: ["React", "TypeScript", "Supabase", "RLS", "Edge Functions", "Zod", "Security", "SaaS"],
+      demo: "",
+      repo: "",
+    },
+    {
+      title: "Ishi Property Hub",
+      category: "platform",
+      stage: "Property Platform + Mobile App",
+      description: "Verification-led Kenyan property platform for vetted short stays, genuine rentals, and early vacancy alerts. The product uses controlled publishing, owner-only approvals, responsive editorial UX, partner submission workflows, and Capacitor-based mobile delivery.",
+      image: "",
+      visualLabel: "Find your place. Live sure.",
+      tags: ["React", "TypeScript", "Supabase", "Capacitor", "Property Tech", "Mobile-first UX", "Verification"],
+      demo: "",
+      repo: "",
+    },
+    {
+      title: "TaskBridge",
+      category: "platform",
+      stage: "Work Platform",
+      description: "A Kenyan digital-work platform connecting freelancers with paid AI training, annotation, transcription, moderation, writing, research, and evaluation tasks, with account security, eligibility flows, managed-team hiring, and M-Pesa-oriented payout UX.",
+      image: "",
+      visualLabel: "Digital work for Kenyan talent",
+      tags: ["React", "TypeScript", "TanStack Router", "Supabase", "Auth", "M-Pesa UX", "SEO"],
+      demo: "",
+      repo: "https://github.com/Stakmodsco/taskbridge-connect",
+    },
+    {
+      title: "Balipa",
+      category: "fintech",
+      stage: "Billing Infrastructure",
+      description: "Kenyan billing and reconciliation infrastructure beginning with school fees: students and guardians, fee structures, append-oriented ledgers, payment allocation, automatic paid/outstanding/credit balances, receipts, statements, reporting, and notification-ready workflows. The core engine is designed to extend to rentals.",
+      image: "",
+      visualLabel: "Paid. Balanced.",
+      tags: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Redis", "Billing", "Reconciliation", "M-Pesa"],
+      demo: "",
+      repo: "",
+    },
+    {
+      title: "LexMind AI Contracts",
+      category: "ai",
+      stage: "Legal AI Product",
+      description: "AI-assisted contract product with contract generation and refinement workflows, document management, billing, authentication, account settings, and a full SaaS dashboard experience designed around professional legal-document creation.",
+      image: "",
+      visualLabel: "AI-assisted contract workflows",
+      tags: ["React", "TypeScript", "AI", "SaaS", "Document Workflows", "Billing", "Framer Motion"],
+      demo: "",
+      repo: "",
+    },
+    {
+      title: "SOC Genesis AI",
+      category: "security",
+      stage: "Security Operations Product",
+      description: "Security-operations interface for alert ingestion, incident triage, incident detail analysis, confidence scoring, security metrics, and operational settings — exploring how AI-assisted workflows can reduce noise and accelerate SOC response.",
+      image: "",
+      visualLabel: "AI-assisted security operations",
+      tags: ["React", "TypeScript", "Cybersecurity", "Incident Triage", "SOC", "Analytics"],
+      demo: "",
+      repo: "",
+    },
+    {
+      title: "Medical Billing AI",
+      category: "ai",
+      stage: "Healthcare Revenue Product",
+      description: "Healthcare revenue and billing product with authentication, dashboard experiences, revenue and expense views, ROI tooling, security and pricing surfaces, and a polished enterprise-facing React interface.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758122328/revenue-glide-ai_ljl1bd.png",
-      tags: ["K8s", "Helm", "ArgoCD", "gRPC", "Kafka"],
+      tags: ["React", "TypeScript", "Supabase", "Healthcare", "Revenue Analytics", "Dashboard UX"],
       demo: "https://medical-billing-ai-theta.vercel.app/",
+      repo: "",
     },
     {
       title: "Theos Educational Platform",
-      category: "edtech",
-      description:
-        "Cross-platform educational app and web platform for theological studies with offline access, structured courses, in-app assessments, live sessions, and AI-powered insights.",
+      category: "platform",
+      stage: "EdTech Platform",
+      description: "Cross-platform theological learning experience with structured educational content and a dashboard-led interface, representing my work across learning-product UX and multi-platform application delivery.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758119072/Student_Dashboard_-_theos_Educational_Platform_1_msrqdd.png",
-      tags: ["Flutter", "React.js", "Python", "FastAPI", "AI in Education", "EdTech"],
+      tags: ["Flutter", "React", "Python", "FastAPI", "EdTech", "Cross-platform"],
       demo: "https://stakmodsco.github.io/theos_educational_platform/",
-    },
-    {
-      title: "Global Health Check App",
-      category: "mobile app",
-      description:
-        "AI-powered mobile and web app for symptom analysis, severity ratings, and guidance",
-      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758125547/Medical_App_UI_concept_MediCare___by_Abdullah_Al_Mamun_on_Dribbble_g3arma.png",
-      tags: ["Python", "FastAPI", "Flutter", "React.js", "LLM Integration"],
-      demo: "https://res.cloudinary.com/dud0zwl1t/video/upload/v1758125254/WhatsApp_Video_2025-09-17_at_18.12.06_rllmyw.mp4",
-    },
-    {
-      title: "Responsive Furniture E-Commerce Template",
-      category: "ecommerce",
-      description:
-        "Mobile-first e-commerce template with optimized performance.",
-      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758120386/Furniture_web_landing_page_1_r0a2c2.png",
-      tags: ["HTML", "Tailwind CSS", "JavaScript"],
-      demo: "https://stakmodsco.github.io/Furniture-Web-Interactive-Landing-page/",
-    },
-    {
-      title: "Delivery Management/Logistics Platform",
-      category: "saas",
-      description:
-        "A modern delivery management SaaS platform that enables logistics companies to manage, track, and optimize package deliveries in real time. Built with a sleek React.js frontend and powerful Node.js backend, it supports client dashboards, driver management, and seamless payment integration for a complete end-to-end logistics solution.",
-      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1759744561/SafeExpress_-_Professional_Delivery_Services___Fast_Secure_Package_Delivery_vv7umh.png",
-      tags: ["React.js", "Node.js", "MongoDB", "Stripe", "TailwindCSS", "WebSocket", "WebRTC"],
-      demo: "https://swiftride-log.vercel.app/",
-    },
-    {
-      title: "Beauty Salon Website",
-      category: "website",
-      description:
-        "A modern, elegant salon website designed to showcase services, stylists, and client experiences while enabling effortless online bookings.",
-      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1759741518/Luxe_Hair_Studio_-_Premium_Hair_Salon_Styling_4_mejwa1.png",
-      tags: ["React.js", "Node.js", "MongoDB", "Stripe", "TailwindCSS"],
-      demo: "https://gilded-strands-salon.vercel.app/",
-    },
-    {
-      title: "WellnesCart Mobile App",
-      category: "mobile app",
-      description:
-        "Mobile e-commerce app for selling health products, supplements, and wellness packages.",
-      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758124885/WellnessCart_UI_boaq4o.png",
-      tags: ["Flutter", "React Native", "Stripe", "Firebase"],
-      demo: "https://res.cloudinary.com/dud0zwl1t/video/upload/v1758124893/WhatsApp_Video_2025-09-17_at_18.10.36_lbw8kb.mp4",
-    },
-    {
-      title: "Contact/Login Page",
-      category: "template",
-      description:
-        "A clean, responsive Contact & Login page built with HTML, CSS, and JS. Features modern forms, data tables, and smooth UI components, perfect for web apps or portfolios.",
-      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758120032/Login_Contact_Page_iyyuai.png",
-      tags: ["HTML", "CSS", "JS"],
-      demo: "https://stakmodsco.github.io/Contact-Login-page/",
+      repo: "https://github.com/Stakmodsco/theos_educational_platform",
     },
     {
       title: "AI Personal COO",
-      category: "saas",
-      description:
-        "AI-powered executive operations assistant that helps businesses automate strategy, optimize workflows, and make data-driven decisions with real-time insights.",
+      category: "ai",
+      stage: "AI Operations Product",
+      description: "Executive operations assistant concept focused on workflow automation, operational visibility, decision support, and AI-assisted business execution through a polished web product experience.",
       image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1761232577/AI_Personal_COO_-_Your_Intelligent_Executive_Assistant_qlaq2e.png",
-      tags: ["React.js", "TypeScript", "Tailwind CSS", "Vite", "AI Automation", "LangChain"],
+      tags: ["React", "TypeScript", "AI Automation", "Operations", "Product UX"],
       demo: "https://ai-personal-coo.vercel.app/",
+      repo: "https://github.com/Stakmodsco/AI-Personal-COO",
     },
     {
-      title: "LeadMind AI CRM Dashboard",
-      category: "landing page",
-      description:
-        "AI-driven real-time CRM dashboard with conversation tracking, funnel visualization, and chat automation.",
-      image: "https://res.cloudinary.com/dud0zwl1t/image/upload/v1758119573/LeadMind_AI_Dashboard_ntu6qf.png",
-      tags: ["React.js", "Tailwind CSS", "AI Components"],
-      demo: "https://stakmodsco.github.io/leadmind-ai-dashboard/",
+      title: "Fino Fiore",
+      category: "commerce",
+      stage: "Luxury Commerce Direction",
+      description: "Luxury fragrance commerce work combining catalog architecture, Kenya-specific pricing logic, premium product presentation, high-quality imagery, and a new cinematic design direction built around animated perfume-note storytelling.",
+      image: "",
+      visualLabel: "Fragrance commerce as a visual experience",
+      tags: ["React", "TypeScript", "Commerce", "UI/UX", "Motion", "Product Storytelling"],
+      demo: "",
+      repo: "",
     },
   ];
 
   const filters = [
-    { id: "all", label: "All Projects" },
-    { id: "saas", label: "SaaS Platforms" },
-    { id: "landing page", label: "Landing Page" },
-    { id: "ecommerce", label: "E-Commerce" },
-    { id: "mobile app", label: "Mobile App" },
-    { id: "website", label: "Website" },
-    { id: "edtech", label: "EdTech" },
-    { id: "template", label: "UI/UX Templates" },
+    { id: "all", label: "Flagship Work" },
+    { id: "mobile", label: "Mobile" },
+    { id: "ai", label: "AI" },
+    { id: "fintech", label: "Fintech" },
+    { id: "security", label: "Security" },
+    { id: "platform", label: "Platforms" },
+    { id: "commerce", label: "Commerce & UX" },
   ];
 
-  const filteredProjects =
-    activeFilter === "all"
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+  const filteredProjects = activeFilter === "all" ? projects : projects.filter((p) => p.category === activeFilter);
 
   return (
     <section id="projects" className="py-20 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/5 to-background" />
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 animate-flow-in">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Featured <span className="text-shimmer">Projects</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              A selection of projects showcasing my expertise in full-stack
-              development, AI, and cloud technologies.
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Flagship <span className="text-shimmer">Engineering Work</span></h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+              Selected from a much larger GitHub body of work. I prioritize the projects that best demonstrate production engineering, product thinking, security, AI, mobile delivery, fintech, and interface quality rather than treating every experiment or remix as a separate case study.
             </p>
-
             <div className="flex flex-wrap justify-center gap-2">
               {filters.map((filter) => (
-                <Button
-                  key={filter.id}
-                  variant={activeFilter === filter.id ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveFilter(filter.id)}
-                >
+                <Button key={filter.id} variant={activeFilter === filter.id ? "default" : "outline"} size="sm" onClick={() => setActiveFilter(filter.id)}>
                   {filter.label}
                 </Button>
               ))}
@@ -199,9 +218,19 @@ export const Projects = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
+            {filteredProjects.map((project, index) => <ProjectCard key={project.title} project={project} index={index} />)}
+          </div>
+
+          <div className="mt-12 glass-card rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div>
+              <h3 className="text-xl font-bold mb-2">More work lives on GitHub</h3>
+              <p className="text-sm text-muted-foreground max-w-3xl">
+                The wider repository collection includes additional cybersecurity products, commerce builds, SaaS experiments, finance products, mobility concepts, landing experiences, and earlier UI explorations. I keep this page curated so the strongest engineering work stays easy to evaluate.
+              </p>
+            </div>
+            <a href="https://github.com/Stakmodsco?tab=repositories" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="whitespace-nowrap"><Github className="h-4 w-4 mr-2" /> Explore GitHub</Button>
+            </a>
           </div>
         </div>
       </div>
