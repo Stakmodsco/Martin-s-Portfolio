@@ -1,16 +1,18 @@
-import { 
-  Code2, 
-  Braces, 
-  Palette, 
-  Server, 
-  Cloud, 
-  Database, 
-  Boxes, 
-  Cpu, 
+import {
+  Code2,
+  Braces,
+  Palette,
+  Server,
+  Cloud,
+  Database,
+  Boxes,
+  Cpu,
   GitBranch,
   Sparkles,
   Terminal,
-  FileCode
+  FileCode,
+  Smartphone,
+  ShieldCheck,
 } from "lucide-react";
 
 export const TechStack = () => {
@@ -19,32 +21,38 @@ export const TechStack = () => {
     { name: "TypeScript", icon: Code2, color: "text-[#3178C6]" },
     { name: "JavaScript", icon: Braces, color: "text-[#F7DF1E]" },
     { name: "React", icon: Cpu, color: "text-[#61DAFB]" },
+    { name: "React Native", icon: Smartphone, color: "text-[#61DAFB]" },
+    { name: "Expo", icon: Smartphone, color: "text-foreground" },
+    { name: "Flutter", icon: Smartphone, color: "text-[#02569B]" },
     { name: "Next.js", icon: Terminal, color: "text-foreground" },
     { name: "TailwindCSS", icon: Palette, color: "text-[#06B6D4]" },
     { name: "FastAPI", icon: Server, color: "text-[#009688]" },
     { name: "Node.js", icon: Server, color: "text-[#339933]" },
-    { name: "LangChain", icon: Sparkles, color: "text-primary" },
     { name: "OpenAI", icon: Sparkles, color: "text-secondary" },
+    { name: "LangChain", icon: Sparkles, color: "text-primary" },
     { name: "AWS", icon: Cloud, color: "text-[#FF9900]" },
-    { name: "Kubernetes", icon: Boxes, color: "text-[#326CE5]" },
-    { name: "Docker", icon: Boxes, color: "text-[#2496ED]" },
-    { name: "PostgreSQL", icon: Database, color: "text-[#336791]" },
+    { name: "Supabase", icon: Database, color: "text-[#3ECF8E]" },
     { name: "MongoDB", icon: Database, color: "text-[#47A248]" },
+    { name: "PostgreSQL", icon: Database, color: "text-[#336791]" },
+    { name: "RevenueCat", icon: ShieldCheck, color: "text-primary" },
+    { name: "Docker", icon: Boxes, color: "text-[#2496ED]" },
+    { name: "Kubernetes", icon: Boxes, color: "text-[#326CE5]" },
+    { name: "GitHub Actions", icon: GitBranch, color: "text-foreground" },
     { name: "Git", icon: GitBranch, color: "text-[#F05032]" },
   ];
 
   return (
     <section className="py-20 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/5 to-background" />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-flow-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Tech <span className="text-shimmer">Stack</span>
+              Current <span className="text-shimmer">Toolbox</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Technologies and tools I use to build exceptional solutions
+              The technologies I use across product engineering, mobile, AI, cloud, data, and release workflows.
             </p>
           </div>
 
